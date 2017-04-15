@@ -1,0 +1,14 @@
+Header set X-Content-Type-Options "nosniff"
+Header set X-XSS-Protection "1; mode=block"
+Header set X-Robots-Tag "none"
+Header set X-Frame-Options "SAMEORIGIN"
+Header set X-Download-Options "noopen"
+Header set X-Permitted-Cross-Domain-Policies "none"
+Header set Content-Security-Policy "default-src 'self'; img-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'"
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php?request=$1 [QSA,NC,L]
+</IfModule>
